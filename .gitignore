@@ -1,5 +1,6 @@
 _site
+.sass-cache/
+.jekyll-metadata
 _gh-pages
 _cache
-.sass-cache
 google_analytics.json
