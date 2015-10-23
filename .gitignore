@@ -5,3 +5,4 @@ _gh-pages
 _cache
 google_analytics.json
 *.markdown~
+*.yml~
