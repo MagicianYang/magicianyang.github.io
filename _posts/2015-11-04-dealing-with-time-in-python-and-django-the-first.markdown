@@ -1,12 +1,11 @@
 ---
 layout: post
 title:  "Django中的时间处理总结（1）"
-date:   2015-10-23 16:10:00
+date:   2015-11-04 18:10:00
 categories: Django
 ---
 
 ## About Timezone
-======
 ### Settings
 Enable the time zone support...
 in settings.py
