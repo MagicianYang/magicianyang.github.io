@@ -13,7 +13,7 @@ Enable the time zone support...
 
 in settings.py
 
-```
+``` 
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_TZ = True
@@ -32,19 +32,29 @@ $ pip install pytz
 ### Examples
 
 ```
-def convert_timezone(time_in):
-    time_utc = time_in.replace(tzinfo=pytz.timezone('UTC'))
-    time_local = time_utc.astimezone(pytz.timezone('Asia/Shanghai'))
-    return time_local
+ def convert_timezone(time_in):
+     time_utc = time_in.replace(tzinfo=pytz.timezone('UTC'))
+     time_local = time_utc.astimezone(pytz.timezone('Asia/Shanghai'))
+     return time_local
 ```
 
-```Python
+```python
 def convert_local_timezone(time_in):
     local = pytz.timezone('Asia/Shanghai')
     local_dt = local.localize(time_in, is_dst=None)
     time_utc = local_dt.astimezone(pytz.utc)
     return time_utc
 ```
+
+{% highlight ruby %}
+def show
+  @widget = Widget(params[:id])
+  respond_to do |format|
+    format.html # show.html.erb
+    format.json { render json: @widget }
+  end
+end
+{% endhighlight %}
 
 
 
