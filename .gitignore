@@ -6,3 +6,5 @@ _cache
 google_analytics.json
 *.markdown~
 *.yml~
+Gemfile~
+*.scss~
