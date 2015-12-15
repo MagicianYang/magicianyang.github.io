@@ -427,15 +427,23 @@ pre {
     color: #f5f5f5;
     background-color: #49483e;
     margin: 5px 30px;
+    font-size: 20px;
+    border:0px;
 }
 
 pre code {
     overflow: auto;
     white-space: pre;
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
 }
 
 
 .highlight {
     text-align: left;
     margin: 5px 10px;
+    background-color: #49483e;
+}
+
+.post-content {
+    text-align: left;
 }
