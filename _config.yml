@@ -88,7 +88,7 @@ email-share: True
 fb-share: True
 twitter-share: True
 linkedin-share: False
-reddit-share: True
+reddit-share: False
 google-plus-share: True
 tumblr-share: False
 pinterest-share: False
