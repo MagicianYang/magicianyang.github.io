@@ -42,7 +42,7 @@ favicon: "/img/favicon.ico"
 
 black-favicon: "/img/black-lab-glass.ico"
 
-background-img: "../img/wallhaven-89617.jpg"
+background-img: "../img/wallhaven-243284.jpg"
 
 ##############################
 # Dynamic Text on the Header #
@@ -56,8 +56,8 @@ type-speed: 10
 start-delay: 200
 delete-delay: 5000
 lines: # You can add HTML Tags in the Text
-  - text: "The lower you fall, the higher you'll fly."
-  - text: "Where’s your will to be weird?"
+  - text: "人生易老梦偏痴"
+  - text: "My Conquest Is the Sea of Stars"
 
 me-img: "/img/Wenli.Yang.600.450340.jpg"
 
