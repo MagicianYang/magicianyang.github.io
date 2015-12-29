@@ -62,7 +62,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
 
   <!-- Disqus -->
 
- 
+  {% if page.section-type == "post" %}
 
     <script type="text/javascript">
     var disqus_shortname = '{{ site.disqus-shortname }}';
@@ -73,7 +73,7 @@ $(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click"
     })();
     </script>
 
-
+  {% endif %}
 
   {% if page.section-type == "post" or page.section-type == "blog" or page.section-type == "index" or page.section-type == "tag" %}
 
