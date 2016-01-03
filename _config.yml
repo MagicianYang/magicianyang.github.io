@@ -33,14 +33,14 @@ author: "Magician Yang"
 title: "Magician Yang's Blog"
 description: "Blog and website of Magician Yang, blogging mainly for record my thoughts."
 keywords: "MagicianYang, personal, jekyll, theme"
-favicon: "/img/favicon.ico"
+favicon: "/img/55171-200.png"
 404-img: "/img/labtocat.png"
 
 ################
 # Header layout #
 ################
 
-black-favicon: "/img/black-lab-glass.ico"
+black-favicon: "/img/the-kid-doctor-who.gif"
 
 background-img: "../img/wallhaven-243284.jpg"
 
