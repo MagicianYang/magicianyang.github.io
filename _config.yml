@@ -33,7 +33,7 @@ author: "Magician Yang"
 title: "Magician Yang's Blog"
 description: "Blog and website of Magician Yang, blogging mainly for recording my thoughts."
 keywords: "MagicianYang, personal, jekyll, theme"
-favicon: "/img/dw-icon.jpg"
+favicon: "/img/55171-200.png"
 404-img: "/img/labtocat.png"
 
 ################
@@ -56,6 +56,7 @@ type-speed: 10
 start-delay: 200
 delete-delay: 5000
 lines: # You can add HTML Tags in the Text
+  - text: "余虽不敏,然余诚矣"
   - text: "人生易老梦偏痴"
   - text: "My Conquest Is the Sea of Stars"
 
