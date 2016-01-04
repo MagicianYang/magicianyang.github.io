@@ -1,6 +1,6 @@
 # Welcome to Magician Yang's blog.
 
-I set up this blog by personal-jekyll-theme and you can find some details witch are different from the original theme. 
+I set up this blog by personal-jekyll-theme and you can find some details which are different from the original theme. 
 
 + I added [redcarpet](https://github.com/vmg/redcarpet) for markdown.
 + I added pygments for the code highlight and picked my favourite highlight theme Monokai.
