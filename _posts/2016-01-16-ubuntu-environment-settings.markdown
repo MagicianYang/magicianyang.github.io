@@ -19,3 +19,10 @@ On Linux or OS X:
 ```
 pip install -U pip
 ```
+
+### 2.[virtualenv](https://virtualenv.readthedocs.org/en/latest/index.html)
+#### Install
+To install globally with pip (if you have pip 1.3 or greater installed globally):
+```
+$ [sudo] pip install virtualenv
+```
