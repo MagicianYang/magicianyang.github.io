@@ -42,6 +42,7 @@ fit(X, y, sample_weight=None)需要的X是个稀疏矩阵（二维数组），�
 predict(X)需要的X样式和前面的训练样本一样，但是只有一份（一行），所以是个一维数组，注意构造时需要用和前面fit()里面一样的词汇表进行对应排序。
 
 下面是生成词频矩阵的实例，需要提前对样本进行分词整合，同时对生成需要预测分类的样本的词频数组也有效
+
 ```python
 from collections import Counter
 import numpy as np
