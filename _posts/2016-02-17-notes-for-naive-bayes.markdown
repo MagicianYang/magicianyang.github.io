@@ -19,8 +19,15 @@ the class) in real life certainly is a simplistic one.
 
 ### Text Classification using Naive Bayes
 
-#### 1.*Multinomial Naive Bayes*
+#### 1.*Multinomial Naive Bayes* for text classification
 See [Stanford's example](https://web.stanford.edu/class/cs124/lec/naivebayes.pdf)
+
+
+#### 2.practice in python
+[scikit-learn](https://github.com/scikit-learn/scikit-learn) is an open source machine learning library for the Python programming language.
+
+And we can find the code for *Multinomial Naive Bayes* [here](https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/naive_bayes.py). And the documentation [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html)
+
 
 
 ### References
