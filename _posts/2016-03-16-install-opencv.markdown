@@ -262,6 +262,9 @@ $ ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so cv2.so
 
 ![pic-151](/img/blog-pic/2016-03-16/Selection_151.jpg)
 
+拓展阅读
+[在linux环境下编译运行OpenCV程序的两种方法](http://www.cnblogs.com/woshijpf/p/3840530.html)
+
 ## OpenCV的实践
 
 ### 代码调试
