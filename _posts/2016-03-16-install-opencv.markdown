@@ -1,7 +1,7 @@
 ---
 layout: post
 section-type: post
-title: Ubuntu Environment Settings
+title: OpenCV的安装与实践
 category: tech
 tags: [ 'Python','OpenCV' ]
 ---
@@ -20,10 +20,15 @@ tags: [ 'Python','OpenCV' ]
 以下将会摘录重要安装步骤
 
 ### Table of Contents
+
 **[1.预先准备，安装各种依赖](#1.预先准备，安装各种依赖)**
+
 **[2.搭建虚拟环境和安装Python3.4](#2.搭建虚拟环境和安装Python3.4)**
+
 **[3.CMake安装](#3.CMake安装)**
+
 **[4.HDF5安装](#4.HDF5安装)**
+
 **[5.OpenCV安装](#5.OpenCV安装)**
 
 
@@ -211,7 +216,7 @@ ImportError: No module named cv2
 
 我在cmake之后报告上面发现一个问题
 
-[pic-149](/img/blog-pic/2016-03-16/Selection_149.jpg)
+[pic-149](https://github.com/MagicianYang/magicianyang.github.io/blob/master/img/blog-pic/2016-03-16/Selection_149.jpg)
 
 这个图和那个保姆级别教程里面的图对比，发现python3部分，只有Interpreter，没有Libraries和numpy
 
