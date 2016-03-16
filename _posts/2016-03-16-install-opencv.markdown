@@ -262,6 +262,65 @@ $ ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so cv2.so
 
 ![pic-151](/img/blog-pic/2016-03-16/Selection_151.jpg)
 
+## OpenCV的实践
+
+### 代码调试
+
+这个文章[用Python和OpenCV创建一个图片搜索引擎的完整指南](http://python.jobbole.com/80860/)中的代码部分调试时有这么几个报错。
+
+#### cv2.ellipse
+
+报错
+```
+TypeError: ellipse() takes at most 5 arguments (8 given)
+```
+
+问题见[<Python, openCV> How I can use cv2.ellipse?](http://stackoverflow.com/questions/18595099/python-opencv-how-i-can-use-cv2-ellipse)
+
+[官方文档](http://docs.opencv.org/2.4/modules/core/doc/drawing_functions.html#ellipse)里面可以看到有两个同名函数,导致了这个问题
+
+```
+cv2.ellipse(img, center, axes, angle, startAngle, endAngle, color[, thickness[, lineType[, shift]]]) → None
+cv2.ellipse(img, box, color[, thickness[, lineType]]) → None
+```
+
+由答案可知，这个实践里面代码运行环境应该是python2.7，所以原来代码中的除法得到的是int类型的数值，传入该函数之后，函数辨认为因此在python3.4下，除号应该改变，代码应该变更为
+
+```
+(axesX, axesY) = (int(w * 0.75) // 2, int(h * 0.75) // 2)
+```
+
+
+#### cv2.normalize
+
+报错
+```
+Traceback (most recent call last):
+  File "index.py", line 32, in <module>
+    features = cd.describe(image)
+  File "/home/wulinfang/code/vacation-image-search-engine/pyimagesearch/colordescriptor.py", line 43, in describe
+    hist = self.histogram(image, cornerMask)
+  File "/home/wulinfang/code/vacation-image-search-engine/pyimagesearch/colordescriptor.py", line 60, in histogram
+    hist = cv2.normalize(hist).flatten()
+TypeError: Required argument 'dst' (pos 2) not found
+```
+
+修改文件`colordesciptor.py`里面
+
+```
+hist = cv2.normalize(hist).flatten()
+```
+
+为
+
+```
+hist = cv2.normalize(hist, hist).flatten()
+```
+
+虽然[OpenCV官方文档2.4](http://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html#normalize)上面没有要求第二个参数，但是3.1.0不加第二个参数不能运行。
+
+
+
 
 
 
