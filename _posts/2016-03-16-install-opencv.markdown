@@ -271,6 +271,7 @@ $ ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so cv2.so
 #### cv2.ellipse
 
 报错
+
 ```
 TypeError: ellipse() takes at most 5 arguments (8 given)
 ```
@@ -286,7 +287,7 @@ cv2.ellipse(img, box, color[, thickness[, lineType]]) → None
 
 由答案可知，这个实践里面代码运行环境应该是python2.7，所以原来代码中的除法得到的是int类型的数值，传入该函数之后，函数辨认为因此在python3.4下，除号应该改变，代码应该变更为
 
-```
+```Python
 (axesX, axesY) = (int(w * 0.75) // 2, int(h * 0.75) // 2)
 ```
 
@@ -308,13 +309,13 @@ TypeError: Required argument 'dst' (pos 2) not found
 
 修改文件`colordesciptor.py`里面
 
-```
+```Python
 hist = cv2.normalize(hist).flatten()
 ```
 
 为
 
-```
+```Python
 hist = cv2.normalize(hist, hist).flatten()
 ```
 
