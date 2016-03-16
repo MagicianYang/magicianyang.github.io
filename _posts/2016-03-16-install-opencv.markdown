@@ -294,6 +294,7 @@ cv2.ellipse(img, box, color[, thickness[, lineType]]) → None
 #### cv2.normalize
 
 报错
+
 ```
 Traceback (most recent call last):
   File "index.py", line 32, in <module>
