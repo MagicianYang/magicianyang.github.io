@@ -216,7 +216,7 @@ ImportError: No module named cv2
 
 我在cmake之后报告上面发现一个问题
 
-[pic-149](https://github.com/MagicianYang/magicianyang.github.io/blob/master/img/blog-pic/2016-03-16/Selection_149.jpg)
+![pic-149](/img/blog-pic/2016-03-16/Selection_149.jpg)
 
 这个图和那个保姆级别教程里面的图对比，发现python3部分，只有Interpreter，没有Libraries和numpy
 
@@ -260,7 +260,7 @@ $ ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so cv2.so
 
 这样就能用cv2来引入模块了，在虚拟环境测试一下
 
-[pic-151](/img/blog-pic/2016-03-16/Selection_151.jpg)
+![pic-151](/img/blog-pic/2016-03-16/Selection_151.jpg)
 
 
 
