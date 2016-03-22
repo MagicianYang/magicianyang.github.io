@@ -94,7 +94,7 @@ dict_keys(['HDF5', 'BUFR', 'PNG', 'MPO', 'GRIB', 'PDF', 'MSP', 'XBM', 'TIFF', 'P
 
 1.rendering
 
-模板中使用`{{form}}`这种写法时，会调用captcha本身的模板，路径就在`/.env34/lib/python3.4/site-packages/captcha/templates`里面，但是由于Django自带`settings.py`里面对templates路径有设置，通常默认路径是`'DIRS': [os.path.join(PROJECT_PATH, '../templates')]`这种，所以需要手动拷贝captcha的模板到自己工程的模板文件夹下面。如果使用jinja的模板的话，就需要对该模板进行一些删除。
+模板中使用{{form}}这种写法时，会调用captcha本身的模板，路径就在`/.env34/lib/python3.4/site-packages/captcha/templates`里面，但是由于Django自带`settings.py`里面对templates路径有设置，通常默认路径是`'DIRS': [os.path.join(PROJECT_PATH, '../templates')]`这种，所以需要手动拷贝captcha的模板到自己工程的模板文件夹下面。如果使用jinja的模板的话，就需要对该模板进行一些删除。
 
 2.
 
