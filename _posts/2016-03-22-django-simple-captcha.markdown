@@ -5,6 +5,8 @@ title: Django中添加验证码
 category: tech
 tags: [ 'Python','OpenCV' ]
 ---
+## 环境配置
+
 ### 安装Pillow
 
 环境：Ubuntu14.04LTS,Python3.4,Django1.8
@@ -75,4 +77,27 @@ dict_keys(['HDF5', 'BUFR', 'PNG', 'MPO', 'GRIB', 'PDF', 'MSP', 'XBM', 'TIFF', 'P
 ```
 
 而且也可以在路径`/.env34/lib/python3.4/site-packages/PIL`里面找到文件`_imagingft.cpython-34m.so`，这时候应该就正常了
+
+### 安装django-simple-captcha以及基本Django配置
+
+[官方文档](http://django-simple-captcha.readthedocs.org/en/latest/usage.html)&[github代码](https://github.com/mbi/django-simple-captcha)
+
+## 代码部分
+
+[参考1]，[参考2]，[参考3]
+
+[参考1]:http://blog.csdn.net/tanzuozhev/article/details/50458688
+[参考2]:http://blog.csdn.net/xxm524/article/details/48370337
+[参考3]:http://www.it-recipes.com/articles/blog/84
+
+### 注意事项
+
+1.rendering
+
+模板中使用`{{form}}`这种写法时，会调用captcha本身的模板，路径就在`/.env34/lib/python3.4/site-packages/captcha/templates`里面，但是由于Django自带`settings.py`里面对templates路径有设置，通常默认路径是`'DIRS': [os.path.join(PROJECT_PATH, '../templates')]`这种，所以需要手动拷贝captcha的模板到自己工程的模板文件夹下面。如果使用jinja的模板的话，就需要对该模板进行一些删除。
+
+2.
+
+
+
 
