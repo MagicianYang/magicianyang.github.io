@@ -324,6 +324,60 @@ hist = cv2.normalize(hist, hist).flatten()
 
 虽然[OpenCV官方文档2.4](http://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html#normalize)上面没有要求第二个参数，但是3.1.0不加第二个参数不能运行。
 
+### 代码应用流程（简要总结）
+
+代码通过四个步骤实现图像的搜索：定义图像描述符，索引化数据集，定义相似矩阵，搜索
+
+#### 1.定义图像描述符
+
+通过`pyimagesearch.colordescriptor.py`里面定义的类`ColorDescriptor`实现。
+
+目前作者将图片划分了五个区域，设定了计算对应区域的像素值占比的方法，主要是针对了风景照片的特点。
+
+*此处可以根据自身需求进行修正。*
+
+#### 2.索引化数据集
+
+在`index.py`里面实现，对已有的相册中图片挨个套用**步骤1**的方法，生成每幅图的特征向量值，将整个相册的信息存入一个`.csv`文件中
+
+通过命令行指令实现——
+
+```shell
+$ python index.py --dataset dataset --index index.csv
+```
+
+其中`--dataset`后面跟需要分析的存储图片路径，`--index`后面跟输出的`.csv`文件路径，要求存储的每个图片名必须唯一
+
+最后可以用命令行查看成功索引化的图片数量
+
+```shell
+$ wc -l index.csv
+```
+
+*此处有关命令行指令可以根据实际需求应用*
+
+#### 3.定义相似矩阵
+
+在`pyimagesearch.searcher.py`中定义类`Searcher`,输入**步骤2**生成的`.csv`文件，调用里面的`search`方法时还需要再输入测试图片的特征值，之后会将测试图片和`.csv`文件的数据**逐行对比测试图和相册图的图像特征**，计算出的结果（图片相似度）存入字典。
+
+最后对字典的值进行升序排序，相似度数值越高，表示两幅图像差别越大
+
+该方法参数`limit`决定了输出结果图片的数量。
+
+#### 4.搜索
+
+用`search.py`进行整合调用，调用步骤1的图像特征值计算方法，对测试图片生成特征值。然后调用步骤3，输出对比结果，最后根据对比结果挨个进行匹配的图片读取展示。
+
+命令行操作——
+
+```
+$ python search.py --index index.csv --query queries/108100.png --result-path dataset
+```
+
+其中`--index`后跟已生成的`.csv`文件路径，`--query`后跟测试图片路径，`--result-path`后跟相册图片路径，用来最后展示时使用
+
+
+
 
 
 
