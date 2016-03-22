@@ -27,7 +27,7 @@ $ sudo apt-get install python-dev python-setuptools
 sudo apt-get install python3-dev python3-setuptools
 ```
 
-Ubuntu 14.04 LTS
+Ubuntu 14.04 LTS(重点)
 
 ```
 $ sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev \
