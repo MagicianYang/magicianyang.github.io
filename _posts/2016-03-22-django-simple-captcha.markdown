@@ -3,7 +3,7 @@ layout: post
 section-type: post
 title: Django中添加验证码
 category: tech
-tags: [ 'Python','OpenCV' ]
+tags: [ 'Python','Django' ]
 ---
 ## 环境配置
 
@@ -106,7 +106,9 @@ dict_keys(['HDF5', 'BUFR', 'PNG', 'MPO', 'GRIB', 'PDF', 'MSP', 'XBM', 'TIFF', 'P
 [参考1]，[参考2]，[参考3]
 
 [参考1]:http://blog.csdn.net/tanzuozhev/article/details/50458688
+
 [参考2]:http://blog.csdn.net/xxm524/article/details/48370337
+
 [参考3]:http://www.it-recipes.com/articles/blog/84
 
 ### 注意事项
