@@ -36,14 +36,14 @@ tags: [ 'Python','OpenCV' ]
 
 #### 升级系统环境
 
-```Shell
+```
 $ sudo apt-get update
 $ sudo apt-get upgrade
 ```
 
 #### 安装用来编译OpenCV的工具包
 
-```Shell
+```
 $ sudo apt-get install build-essential cmake git pkg-config
 ```
 
@@ -51,7 +51,7 @@ $ sudo apt-get install build-essential cmake git pkg-config
 
 #### 安装其他相关必要或者有帮助的软件包以及lib
 
-```Shell
+```
 $ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 $ sudo apt-get install libgtk2.0-dev
 $ sudo apt-get install libatlas-base-dev gfortran
@@ -63,14 +63,14 @@ $ sudo apt-get install libatlas-base-dev gfortran
 
 pip
 
-```Shell
+```
 $ wget https://bootstrap.pypa.io/get-pip.py
 $ sudo python3 get-pip.py
 ```
 
 virtualenv和virtualenvwrapper
 
-```Shell
+```
 $ sudo pip3 install virtualenv virtualenvwrapper
 ```
 
@@ -88,19 +88,19 @@ source /usr/local/bin/virtualenvwrapper.sh
 新的环境可以在Pycharm里面Settings的Project Interpreter直接对工程直接创建，记得选Python3.4
 或者命令行创建
 
-```Shell
+```
 $ mkvirtualenv .cv
 ```
 
 命令行进入虚拟环境 .cv
 
-```Shell
+```
 $ source .cv/bin/activate
 ```
 
 安装Python&NumPy
 
-```Shell
+```
 $ sudo apt-get install python3.4-dev
 $ pip install numpy
 ```
@@ -112,32 +112,32 @@ $ pip install numpy
 
 卸载老版本
 
-```Shell
+```
 $ sudo apt-get autoremove cmake
 ```
 
 下载新版本，现阶段最高版本3.5
 
-```Shell
+```
 $ cd /usr/local
 $ wget http://www.cmake.org/files/v3.5/cmake-3.5.0-Linux-i386.tar.gz
 ```
 
 解压
 
-```Shell
+```
 $ tar zxvf cmake-3.5.0-Linux-i386.tar.gz
 ```
 
 创建链接
 
-```Shell
+```
 $ ln -s /usr/local/cmake-2.8.9-Linux-i386/bin/* /usr/bin/
 ```
 
 此时安装完成可以查看版本
 
-```Shell
+```
 $ cmake --version
 $ cmake version 3.5.0
 ```
@@ -159,13 +159,13 @@ fatal error: hdf5.h: no such file or directory
 
 去[HDF5官网](https://www.hdfgroup.org/HDF5/)下一份或者用命令行随便下个老版本
 
-```Shell
+```
 $ wget http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.16.tar
 ```
 
 之后解压编译安装
 
-```Shell
+```
 $ tar -xzf hdf5-1.8.16.tar.gz
 $ cd hdf5-1.8.16
 $ mkdir build
@@ -186,7 +186,7 @@ $ sudo make install
 
 opencv
 
-```Shell
+```
 $ cd ~
 $ git clone https://github.com/Itseez/opencv.git
 $ cd opencv
@@ -195,7 +195,7 @@ $ git checkout 3.1.0
 
 opencv_contrib
 
-```Shell
+```
 $ cd ~
 $ git clone https://github.com/Itseez/opencv_contrib.git
 $ cd opencv_contrib
@@ -230,7 +230,7 @@ ImportError: No module named cv2
 
 这时候我们回到正常步骤
 
-```Shell
+```
 $ cd ~/opencv
 $ mkdir build
 $ cd build
@@ -342,7 +342,7 @@ hist = cv2.normalize(hist, hist).flatten()
 
 通过命令行指令实现——
 
-```shell
+```
 $ python index.py --dataset dataset --index index.csv
 ```
 
@@ -350,7 +350,7 @@ $ python index.py --dataset dataset --index index.csv
 
 最后可以用命令行查看成功索引化的图片数量
 
-```shell
+```
 $ wc -l index.csv
 ```
 
