@@ -98,9 +98,9 @@ find .env34 -type f -name "000*" -delete
 
   + 用`show create table log_table_name`查看建表信息并且在相应线上log数据库里面手动建表
 
-  + 线上主数据库完全不做变更
+  + 线上主数据库完全不做其他变更
 
-  + 记得添加新的建表语句到`create_table.sql`
+  + 记得添加新的建表语句到`create_table.sql`备份
 
 + 针对其他表的改动
 
@@ -108,6 +108,7 @@ find .env34 -type f -name "000*" -delete
 
   + 按照正常建表改表流程进行，`./manage.py migrate app_label`务必记得加`app_label`
 
+情况二（误操作等问题）：
 
 
 
