@@ -8,18 +8,18 @@ tags: [ 'Django','MySQL' ]
 
 ### Table of Contents
 
-**[1.Django版本升级到1.8弃用south](#Upgrading from South)**
+**[1.Django版本升级到1.8弃用south](#Upgrading-from-South)**
 
-**[2.通常的建表改表操作](#Make Migrations)**
+**[2.通常的建表改表操作](#Make-Migrations)**
 
-**[3.改表注意事项](#Tips for Migrations)**
+**[3.改表注意事项](#Tips-for-Migrations)**
 
-**[4.手动操作改表（慎重）](#Migrate Table Manually)**
+**[4.手动操作改表（慎重）](#Migrate-Table-Manually)**
 
 
 _environment:Django 1.8, Ubuntu 14.04LTS, Mysql 5.6_
 
-### Upgrading from South
+### Upgrading-from-South
 
 Django版本升级之后不再使用south，迁移已经存在的表的方法如下:
 
@@ -50,7 +50,7 @@ find .env34 -type f -name "000*" -delete
 
 同理以上操作可以适用于重新整理`migrations`文件夹中内容并生成`0001_initial.py`
 
-### Make Migrations
+### Make-Migrations
 
 目前建表改表流程如下：
 
@@ -66,7 +66,7 @@ find .env34 -type f -name "000*" -delete
 
 ⋅⋅```show create table table_name```
 
-### Tips for Migrations
+### Tips-for-Migrations
 
 + 如果是删除某个表格的多余列并且删除和这些列相关的索引时务必分两部操作
 
@@ -76,7 +76,7 @@ find .env34 -type f -name "000*" -delete
 
   + 最后执行`./manage.py migrate [app_label]`可以保证无误
 
-### Migrate Table Manually
+### Migrate-Table-Manually
 
 手动改表有两种情况，其一是某些app的表不在主数据库而在其他数据库里，需要手动建表等操作，其二是有时候会出现不必要的冲突或者改错表的情况，单纯借助Django自带的改表操作不太合适。
 
@@ -108,7 +108,27 @@ find .env34 -type f -name "000*" -delete
 
   + 按照正常建表改表流程进行，`./manage.py migrate app_label`务必记得加`app_label`
 
-情况二（误操作等问题）：
+情况二（误操作需要手动回退等问题）：
+
++ 手动改表原则就是为了恢复现有`migrations`文件夹中已有条目的表结构状况，总之要操作对应表格，`migrations`文件夹中的文件需要删除的也可以删除（此时也要看看表`django_migrations`中如果也有记录需要一并还原），最终要保持两者一致
+
++ 总之一般就是列和索引的改动稍微麻烦点，要是整表改动的直接drop table然后删记录(`delete from django_migrations where id=X`)就行了
+
++ 直接用sql语句更改，常用MySQL语句如下（注意有些列名或者表名需要加反引号）：
+
+  + 增加列：`ALTER TABLE TestTable ADD iValues int(11) NOT NULL;` (TestTable表名，iValues列名）
+
+  + 删除列：`ALTER TABLE TestTable DROP COLUMN iValues1;`
+
+  + 增加普通索引：`ALTER TABLE table_name ADD INDEX index_name ( column )
+
+  + 增加多列索引：`ALTER TABLE table_name ADD INDEX index_name ( column1, column2, column3 )`
+
+  + 删除普通索引：`ALTER TABLE table_name DROP INDEX index_name` （提前查index_name）
+
++ 注意手动改表有可能会导致其他程序员需要重新导入一下线上表结构
+
+---
 
 
 
