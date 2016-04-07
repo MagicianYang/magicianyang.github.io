@@ -3,7 +3,7 @@ layout: post
 section-type: post
 title: OpenCV的安装与实践
 category: tech
-tags: [ 'Python','OpenCV' ]
+tags: [ 'python','opencv' ]
 ---
 ## OpenCV的安装
 

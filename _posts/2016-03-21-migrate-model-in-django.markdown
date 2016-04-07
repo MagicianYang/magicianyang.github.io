@@ -3,7 +3,7 @@ layout: post
 section-type: post
 title: Django中对MySQL数据库建表改表操作及注意事项
 category: tech
-tags: [ 'Django','MySQL' ]
+tags: [ 'django','mysql' ]
 ---
 
 ### Table of Contents

@@ -3,7 +3,7 @@ layout: post
 section-type: post
 title: Django中添加验证码
 category: tech
-tags: [ 'Python','Django' ]
+tags: [ 'python','django' ]
 ---
 ## 环境配置
 

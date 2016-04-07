@@ -2,11 +2,11 @@
 <!-- Post List Start -->
 
 <h4 align="left">
-  {{ post.date | date_to_string }}
+  <strong-title>{{ post.date | date_to_string }}</strong-title>
   <small>. {{ post.category }} .</small>
   <br class="visible-xs-block">
   <a href="{{site.baseurl}}{{post.url}}">
-    {{ post.title }}
+    <strong-title>{{ post.title }}</strong-title>
   </a>
   <br class="visible-xs-block">
   <small><a href="{{site.baseurl}}{{post.url}}#disqus_thread">Comments</a></small>
