@@ -4,6 +4,7 @@ section-type: post
 title: OpenCV的安装与实践
 category: tech
 tags: [ 'python','opencv' ]
+toc: show
 ---
 ## OpenCV的安装
 
@@ -18,18 +19,6 @@ tags: [ 'python','opencv' ]
 另外有一篇同样保姆级别的安装文章是针对Python2.7+的，见[Install OpenCV 3.0 and Python 2.7+ on Ubuntu](http://www.pyimagesearch.com/2015/06/22/install-opencv-3-0-and-python-2-7-on-ubuntu/)
 
 以下将会摘录重要安装步骤
-
-### Table of Contents
-
-**[1.预先准备，安装各种依赖](#1.预先准备，安装各种依赖)**
-
-**[2.搭建虚拟环境和安装Python3.4](#2.搭建虚拟环境和安装Python3.4)**
-
-**[3.CMake安装](#3.CMake安装)**
-
-**[4.HDF5安装](#4.HDF5安装)**
-
-**[5.OpenCV安装](#5.OpenCV安装)**
 
 
 ### 1.预先准备，安装各种依赖

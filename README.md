@@ -1,12 +1,13 @@
 # Welcome to Magician Yang's blog.
 
-I set up this blog by personal-jekyll-theme and you can find some details which are different from the original theme. 
+I set up this blog by personal-jekyll-theme and you can find some details which are different from the original theme.
 
 + I added [redcarpet](https://github.com/vmg/redcarpet) for markdown.
-+ I added pygments for the code highlight and picked my favourite highlight theme Monokai.
++ I added pygments for the code highlight and picked my favourite highlight theme Monokai. And I also edited the css for the html tag `<code>`.
 + I can't figure out why the disqus cannot be load well in my blog, but after I deleted `{% if page.section-type == "post" %}` in js.html line 65 and `{% if page.section-type == "post" or page.section-type == "blog" or page.section-type == "index" or page.section-type == "tag" %}` in js.html line 78, it can be loaded. Until now, I don't know why. Maybe someone can help me to slove this problem.
 + I added `text-align: left` for the post content.
-+ I modified other personal settings.
++ I added the table of contents for the post, using [jekyll-table-of-contents](https://github.com/ghiculescu/jekyll-table-of-contents). I modified some details in order to adapt for my blog.
++ I modified other personal settings in `grayscale.scss` and `_config.yml`.
 
 The content you see below is from personal-jekyll-theme.
 ---

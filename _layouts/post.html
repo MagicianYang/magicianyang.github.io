@@ -26,6 +26,9 @@
           </h4>
 
           <div class="post-content">
+            {% if page.toc == "show" %}
+              <div id="toc"></div>
+            {% endif %}
              {{ content }}
           </div>
 

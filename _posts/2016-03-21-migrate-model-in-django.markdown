@@ -4,18 +4,8 @@ section-type: post
 title: Django中对MySQL数据库建表改表操作及注意事项
 category: tech
 tags: [ 'django','mysql' ]
+toc: show
 ---
-
-### Table of Contents
-
-**[1.Django版本升级到1.8弃用south](#Upgrading-from-South)**
-
-**[2.通常的建表改表操作](#Make-Migrations)**
-
-**[3.改表注意事项](#Tips-for-Migrations)**
-
-**[4.手动操作改表（慎重）](#Migrate-Table-Manually)**
-
 
 _environment:Django 1.8, Ubuntu 14.04LTS, Mysql 5.6_
 
@@ -64,7 +54,7 @@ find .env34 -type f -name "000*" -delete
 
 5.如果一切无误则可以合并代码。可以查看表结构是否无误，如在数据库中执行：
 
-⋅⋅```show create table table_name```
+    ```show create table table_name```
 
 ### Tips-for-Migrations
 

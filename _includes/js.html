@@ -2,7 +2,7 @@
 <!-- Javascript Start -->
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -266,6 +266,16 @@ function addTohistory() {
 
   <!-- Swipe Instructions for Post End -->
 
+{% endif %}
+
+{% if page.toc == "show" %}
+  <script src="{{site.baseurl}}/js/toc.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#toc").toc({ listType: 'ul'});
+    });
+    console.log("123");
+  </script>
 {% endif %}
 
 <!-- Javascript End -->

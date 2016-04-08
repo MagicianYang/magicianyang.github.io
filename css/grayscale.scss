@@ -424,6 +424,8 @@ body {
 }
 
 /* Added in Magician Yang's blog */
+
+/* css for code highlight start */
 pre {
     word-wrap: inherit;
     color: #f5f5f5;
@@ -457,7 +459,9 @@ code {
     border-radius: 4px;
     font-family: 'Ubuntu Mono','Times New Roman',Times,serif;
 }
+/* css for code highlight end */
 
+/* css for strong tag start */
 strong {
     font-size: 120%;
     color: #ffe135;
@@ -466,4 +470,28 @@ strong {
 strong-title {
     font-weight: 700;
 }
+/* css for strong tag end */
+
+/* css for toc start */
+.clickable-header {
+  cursor:pointer;
+}
+.clickable-header:hover {
+  text-decoration:underline;
+}
+.top-level-header {
+  display:inline;
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.back-to-top {
+  margin-left:5px;
+  cursor:pointer;
+}
+
+div.toc{
+    font-family: Georgia,"Times New Roman",Times,serif;
+}
+/* css for toc end */
+
 /* Added in Magician Yang's blog */
