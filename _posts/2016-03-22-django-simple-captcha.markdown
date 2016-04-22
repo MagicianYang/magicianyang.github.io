@@ -103,13 +103,38 @@ dict_keys(['HDF5', 'BUFR', 'PNG', 'MPO', 'GRIB', 'PDF', 'MSP', 'XBM', 'TIFF', 'P
 
 ## 代码部分
 
-[参考1]，[参考2]，[参考3]
+[参考1](http://blog.csdn.net/tanzuozhev/article/details/50458688)
 
-[参考1]:http://blog.csdn.net/tanzuozhev/article/details/50458688
+[参考2](http://blog.csdn.net/xxm524/article/details/48370337)
 
-[参考2]:http://blog.csdn.net/xxm524/article/details/48370337
+[参考3](http://www.it-recipes.com/articles/blog/84)
 
-[参考3]:http://www.it-recipes.com/articles/blog/84
+### MVC的各部分写法（实践）
+
+#### Form
+
+参照[官方文档](http://django-simple-captcha.readthedocs.org/en/latest/usage.html#adding-to-a-form)
+
+不过我们通常不直接使用django自带的Form，所以只要在form.py里面加上以下内容
+
+```python
+from django import forms
+from captcha.fields import CaptchaField
+
+class CaptchaLoginForm(forms.Form):
+    captcha = CaptchaField()
+```
+
+#### Models
+
+这个插件生成的hashkey
+
+#### Views & Templates
+
+尝试1：非ajax形式，直接刷新页面的方式
+
+尝试2：ajax形式，只刷新验证码部分
+
 
 ### 注意事项
 
