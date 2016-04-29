@@ -62,6 +62,12 @@ lines: # You can add HTML Tags in the Text
 
 me-img: "/img/Wenli.Yang.600.450340.jpg"
 
+##############################
+# Color the browser elements #
+##############################
+color-browser: "#000000"
+apple-status-bar-style: "black"
+
 ################
 # Web app mode #
 ################

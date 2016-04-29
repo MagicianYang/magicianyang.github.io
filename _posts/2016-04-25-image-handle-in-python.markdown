@@ -21,5 +21,5 @@ def upload_pic_size(file):
         width, height = im.size
         print(width)
         print(height)
-    return width, height, file_size****
+    return width, height, file_size
 ```

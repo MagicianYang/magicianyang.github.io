@@ -38,6 +38,17 @@ h6 {
     letter-spacing: 1px;
 }
 
+/* Added in { Personal } */
+h4 {
+    a.category {
+        color: inherit;
+    }
+
+    a.tag {
+        font-size: 12px;
+    }
+}
+
 p {
     margin: 0 0 5px;
     font-size: 18px;
@@ -258,6 +269,15 @@ a {
       display: inline !important;
       border: 1px solid $dark !important;
     }
+
+    /* Added in { Personal } */
+    &#post {
+        div.author img {
+            border: 0px;
+            margin-bottom: 20px;
+            padding: 4px;
+        }
+    }
 }
 
 .btn {
@@ -309,6 +329,7 @@ ul.social-buttons li a {
 
 footer {
     padding: 50px 0;
+    text-align: center;
     p {
         margin: 0;
     }
@@ -344,6 +365,11 @@ body {
     -webkit-animation: blink 0.7s infinite;
     -moz-animation: blink 0.7s infinite;
     animation: blink 0.7s infinite;
+    font-size: 16px;
+    vertical-align: top;
+    @media(min-width:768px) {
+        font-size: 22px;
+    }
 }
 @keyframes blink{
     0% { opacity:1; }
@@ -388,10 +414,9 @@ body {
      position: absolute;
      background-color: rgba(0, 0, 0, 0.5);
      width: 100%;
-     height: 100%;
+     min-height: 100%;
      top: 0;
      right: 0;
-     bottom: 0;
      left: 0;
      z-index: 1;
       > div {

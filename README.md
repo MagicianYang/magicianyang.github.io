@@ -91,10 +91,10 @@ The theme contains documentation in the form of [blog posts](https://panossakkos
 
 ## How to run locally
 
-First you need to install the dependencies:
+First, you need to install jekyll and the dependencies of { Personal } by running:
 
 ````
-gem install jekyll jekyll-paginate jemoji html-proofer
+./scripts/install
 ````
 
 Then, you can build and serve your website by simply running:
@@ -110,7 +110,7 @@ Don't forget to list your { Personal } blog in the [Blogs using { Personal }](ht
 ## Integrating bug fixes and features into your old fork
 
 Have you published your own website by forking { Personal } and now you want to get the latest bug fixes and features from this repo into your website?
-Then check [this](https://github.com/PanosSakkos/personal-jekyll-theme/wiki/Integrating-latest-bug-fixes-and-features-into-your-past-fork) out.
+Then check [this](https://github.com/PanosSakkos/personal-jekyll-theme/wiki/Upgrading-your-%7B-Personal-%7D-website-with-our-latest-bug-fixes-and-features) out.
 
 ## OSS used in { Personal }
 
