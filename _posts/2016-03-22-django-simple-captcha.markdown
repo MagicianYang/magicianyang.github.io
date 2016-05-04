@@ -9,7 +9,7 @@ tags: [ 'python','django' ]
 
 ### 安装Pillow
 
-环境：Ubuntu14.04LTS,Python3.4,Django1.8
+环境：Ubuntu14.04LTS,Python3.4,Django1.8,jinja2
 
 #### The _imagingft C module is not installed报错解决
 
@@ -88,9 +88,7 @@ dict_keys(['HDF5', 'BUFR', 'PNG', 'MPO', 'GRIB', 'PDF', 'MSP', 'XBM', 'TIFF', 'P
 
 > 2. Add `captcha` to the `INSTALLED_APPS` in your `settings.py`
 
-
 > 3. Run `python manage.py syncdb` (or ``python manage.py migrate`` if you are managing database migrations via South) to create the required database tables
-
 
 > 4. Add an entry to your `urls.py`
 
@@ -127,13 +125,43 @@ class CaptchaLoginForm(forms.Form):
 
 #### Models
 
-这个插件生成的hashkey
+这个插件生成的hashkey和response存在表`captcha_captchastore`里面，存储实例如下
+
+| id  | challenge | response | hashkey                                  | expiration          |
+|-----|-----------|----------|------------------------------------------|---------------------|
+| 112 | HFSS      | hfss     | 1c23a56b1b09a0f0c5cfb60d0bf25b4c098bae89 | 2016-05-04 06:16:47 |
+
 
 #### Views & Templates
 
 尝试1：非ajax形式，直接刷新页面的方式
 
 尝试2：ajax形式，只刷新验证码部分
+
+**views.py**中
+
+首先对`login`的get请求时生成验证码图片
+
+```python
+def login(request):
+    cap_form = CaptchaLoginForm()
+    return render_to_response('admin/login.jinja',
+                              {'cap_form': cap_form})
+```
+
+对应的**template.jinja**中，html部分可以直接调用包里面自带的区块生成验证码填写区域
+
+```jinja
+{{ cap_form }}
+<span id="captcha_status" style="color:blue;display:none;">*验证码错误</span>
+<button type="button" id='login_submit'>登录</button>
+<input type='submit' hidden/>
+<button type="button" id='refresh_btn'>刷新</button>
+```
+
+之后对其进行验证码提交
+
+
 
 
 ### 注意事项
