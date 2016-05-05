@@ -54,7 +54,9 @@ find .env34 -type f -name "000*" -delete
 
 5.如果一切无误则可以合并代码。可以查看表结构是否无误，如在数据库中执行：
 
-    ```show create table table_name```
+```
+show create table table_name
+```
 
 ### Tips-for-Migrations
 

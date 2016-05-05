@@ -125,7 +125,7 @@ class CaptchaLoginForm(forms.Form):
 
 #### Models
 
-这个插件生成的hashkey和response存在表`captcha_captchastore`里面，存储实例如下
+这个插件生成的hashkey和response存在表`captcha_captchastore`里面，表格存储实例如下
 
 | id  | challenge | response | hashkey                                  | expiration          |
 |-----|-----------|----------|------------------------------------------|---------------------|
@@ -138,28 +138,94 @@ class CaptchaLoginForm(forms.Form):
 
 尝试2：ajax形式，只刷新验证码部分
 
-**views.py**中
-
-首先对`login`的get请求时生成验证码图片
+views.py中,首先对`^login$`的get请求时生成验证码图片
 
 ```python
 def login(request):
     cap_form = CaptchaLoginForm()
-    return render_to_response('admin/login.jinja',
-                              {'cap_form': cap_form})
+    return render_to_response('template.jinja', {'cap_form': cap_form})
 ```
 
-对应的**template.jinja**中，html部分可以直接调用包里面自带的区块生成验证码填写区域
+对应的template.jinja中，html部分可以直接调用包里面自带的区块生成验证码，即将`\{{ cap_form \}}`直接放入form区域，之后添加提交按钮
 
 ```jinja
-{{ cap_form }}
-<span id="captcha_status" style="color:blue;display:none;">*验证码错误</span>
-<button type="button" id='login_submit'>登录</button>
-<input type='submit' hidden/>
-<button type="button" id='refresh_btn'>刷新</button>
+<form id="login_form" action='login' method='post'>
+	// 此处加入包里面自带区块
+    {% raw %}
+    {{cap_form}}
+    {% endraw %}
+	<span id="captcha_status" style="color:blue;display:none;">*验证码错误</span>
+	<button type="button" id='login_submit'>登录</button>
+	<input type='submit' hidden/>
+	<button type="button" id='refresh_btn'>刷新</button>
+</form>
 ```
 
-之后对其进行验证码提交
+为实现ajax验证，对应js代码（包括验证码核对以及刷新操作）
+
+```JavaScript
+$(function () {
+        var controller = {
+            info_verify: function (e) {
+                e.preventDefault();
+                var hashkey = $('#id_captcha_0').val();
+                var key = $('#id_captcha_1').val();
+                console.log(key);
+                if (key == "") {
+                    alert("请填写验证码");
+                }
+                else {
+                    $.ajax('login/verify', {
+                        data: {key: key, hashkey: hashkey},
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data.rt);
+                            if (data.rt) {
+                                $("#login_form").submit();
+                            } else {
+                                $("#captcha_status").show();
+                                $.getJSON("/captcha/refresh/",
+                                        function (result) {
+                                            $('.captcha').attr('src', result['image_url']);
+                                            $('#id_captcha_0').val(result['key'])
+                                        });
+                            }
+                        },
+                        error: function (data) {
+                            alert("网络错误T_T");
+                        }
+                    });
+                }
+            },
+            refresh: function () {
+                $.getJSON("/captcha/refresh/",
+                        function (result) {
+                            $('.captcha').attr('src', result['image_url']);
+                            $('#id_captcha_0').val(result['key'])
+                        });
+            }
+        };
+
+        $('#login_submit').click(controller.info_verify);
+        $('#refresh_btn').click(controller.refresh);
+
+    });
+```
+
+这样验证码会先提交到路径`^login/verify$`执行views.py里面的
+
+```python
+def login_verify(request, key, hashkey):
+    cs = CaptchaStore.objects.filter(hashkey=hashkey)
+    true_key = cs[0].response
+    key = key.lower()
+    if key == true_key:
+        return True, {'message': 1}
+    else:
+        return False, {'message': 0}
+```
+
+这样的话，views.py中,对`^login$`的post请求不用再去处理验证码问题
 
 
 
