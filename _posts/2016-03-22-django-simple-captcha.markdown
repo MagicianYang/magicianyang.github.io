@@ -136,6 +136,33 @@ class CaptchaLoginForm(forms.Form):
 
 尝试1：非ajax形式，直接刷新页面的方式
 
+views.py中,首先对`^login$`的get请求时生成验证码图片
+
+```python
+def login(request):
+    cap_form = CaptchaLoginForm()
+    return render_to_response('template.jinja', {'cap_form': cap_form})
+```
+
+对`^login$`的get请求时验证图片
+
+```python
+def login(request):
+    cap_form = CaptchaLoginForm(request.POST)
+    if not cap_form.is_valid():
+        return HttpResponseRedirect('login?' + urlencode({'error': '验证码错误'}))
+```
+
+html里面
+
+```jinja
+<form id="login_form" action='login' method='post'>
+    {% raw %}{{cap_form}}{% endraw %}
+    <input type='submit'/>
+</form>
+```
+
+
 尝试2：ajax形式，只刷新验证码部分
 
 views.py中,首先对`^login$`的get请求时生成验证码图片
@@ -146,14 +173,12 @@ def login(request):
     return render_to_response('template.jinja', {'cap_form': cap_form})
 ```
 
-对应的template.jinja中，html部分可以直接调用包里面自带的区块生成验证码，即将`\{{ cap_form \}}`直接放入form区域，之后添加提交按钮
+对应的template.jinja中，html部分可以直接调用包里面自带的区块生成验证码，即将{% raw %}{{ cap_form }}{% endraw %}直接放入form区域，之后添加提交按钮
 
 ```jinja
 <form id="login_form" action='login' method='post'>
-	// 此处加入包里面自带区块
-    {% raw %}
-    {{cap_form}}
-    {% endraw %}
+	// 此处先加入包里面自带区块cap_form
+    {% raw %}{{cap_form}}{% endraw %}
 	<span id="captcha_status" style="color:blue;display:none;">*验证码错误</span>
 	<button type="button" id='login_submit'>登录</button>
 	<input type='submit' hidden/>
@@ -228,15 +253,13 @@ def login_verify(request, key, hashkey):
 这样的话，views.py中,对`^login$`的post请求不用再去处理验证码问题
 
 
-
-
 ### 注意事项
 
 1.rendering
 
-模板中使用{{form}}这种写法时，会调用captcha本身的模板，路径就在`/.env34/lib/python3.4/site-packages/captcha/templates`里面，但是由于Django自带`settings.py`里面对templates路径有设置，通常默认路径是`'DIRS': [os.path.join(PROJECT_PATH, '../templates')]`这种，所以需要手动拷贝captcha的模板到自己工程的模板文件夹下面。如果使用jinja的模板的话，就需要对该模板进行一些删除。
+模板中使用{% raw %}{{form}}{% endraw %}这种写法时，会调用captcha本身的模板，路径就在`/.env34/lib/python3.4/site-packages/captcha/templates`里面(.env34是虚拟环境)，但是由于Django自带`settings.py`里面对templates路径有设置，通常默认路径是`'DIRS': [os.path.join(PROJECT_PATH, '../templates')]`这种，所以需要手动拷贝captcha的模板到自己工程的模板文件夹下面。如果使用jinja的模板的话，就需要对该模板进行一些删除。
 
-2.
+2.个性化设置参见官方文档即可
 
 
 
