@@ -3,8 +3,12 @@ layout: post
 section-type: post
 title: 网页加载特殊字体
 category: tech
-tags: [ 'django','css','javascript' ]
+tags: [ 'css','javascript' ]
 ---
+
+_environment:django,jinja,easyui_
+
+使用@font-face直接加载web服务器上的字体,参考[文章](http://www.w3cplus.com/content/css3-font-face)
 
 如果不改变字体直接加载的话，使用十分简单，例子如下
 
@@ -51,7 +55,7 @@ div.testFont {
 <div id="btn_font" class="easyui-linkbutton btn">字体预览</div>
 ```
 
-```
+```javascript
 <script type="text/javascript">
     function drawCtrl($scope) {
         return true;
@@ -98,6 +102,8 @@ div.testFont {
     });
 </script>
 ```
+
+以上js代码向`show/font`请求字段'val'得到返回的字体所在地址链接之后可以加载
 
 
 
