@@ -25,9 +25,9 @@ datetime.datetime(2016, 5, 11, 6, 49, 18, tzinfo=<UTC>)
 
 
 
-### example
+### 实例
 
-#### converting-between-local-time-and-utc
+#### 本地时间和UTC之前的时区转换问题
 
 ```python
 import pytz
@@ -81,7 +81,63 @@ In [9]: a_local
 Out[9]: datetime.datetime(2016, 5, 11, 17, 13, 14, 791456, tzinfo=<DstTzInfo 'Asia/Shanghai' CST+8:00:00 STD>)
 ```
 
+#### 获取某时刻的准确时间戳（考虑时区）
+
+```python
+import pytz
+import datetime
+import time
+date_str = '2016-05-27'
+start_str = '{} 00:00:00'.format(date_str)
+start_datetime = datetime.datetime.strptime(start_str,'%Y-%m-%d %H:%M:%S')
+tz=pytz.timezone('Asia/Shanghai')
+start_local = tz.localize(start_datetime,is_dst=None)
+start_structtime = start_local.timetuple()
+start_timestamp = int(time.mktime(start_structtime)*1000)
+
+In [11]: start_timestamp
+Out[11]: 1464278400000
+```
+
 ---
 
 趣味小知识：
 UTC是什么的缩写？戳[维基UTC](https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6)结果发现因为英文表示（Coordinated Universal Time）和法文表示（Temps Universel Coordonné）冲突导致缩写进行了妥协使用……
+
+---
+
+
+
+### 其他Python时间处理问题实例
+
+#### 返回当前毫秒级别时间戳
+
+```python
+>>> import time
+>>> current_milli_time = lambda: int(round(time.time()*1000))
+>>> current_milli_time()
+1464338590155
+```
+
+#### 时间戳转换成字符串
+
+```python
+>>> import datetime
+>>> print(datetime.datetime.fromtimestamp(1464338590.155).strftime('%Y-%m-%d %H:%M:%S'))
+2016-05-27 16:43:10
+```
+
+值得注意的是，`.fromtimestamp()`这个方法在本地执行的时候，会把填入的时间戳转换为本地时间，如果需要确定的获得utc的时间，则直接使用`.utcfromtimestamp()`
+
+
+
+
+
+
+
+
+
+
+
+
+
