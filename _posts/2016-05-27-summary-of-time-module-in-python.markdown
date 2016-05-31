@@ -22,3 +22,23 @@ toc: show
 ```
 start_datetime = datetime.datetime.strptime(start_str,'%Y-%m-%d %H:%M:%S')
 ```
+
+### 特定时间
+
+1.now
+
+```
+>>> import datetime
+>>> a=datetime.datetime.today()
+>>> a
+datetime.datetime(2016, 5, 31, 11, 35, 3, 660797)
+>>> print(a)
+2016-05-31 11:35:03.660797
+>>> b=datetime.datetime.now()
+>>> b
+datetime.datetime(2016, 5, 31, 15, 43, 21, 269203)
+```
+
+```
+
+```

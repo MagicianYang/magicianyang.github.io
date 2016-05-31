@@ -10,9 +10,11 @@ toc: show
 
 ### Django中时区问题
 
-#### recommendation
+#### 几点建议
 
 1.设置`USE_TZ = True`并且设置`TIME_ZONE = 'Asia/Shanghai'`
+
+注意要求安装python的包`pytz`
 
 2.以第一条为前提，需要遵守的原则是——__所有存入model的时间一律先转换为utc时间再存储__，而通过`auto_now`以及`auto_now_add`自动生成的时间一定是utc时间，而且存入model的时间再取出之后的时区并不是naive的而是已经设定时区为utc的，例如从数据库中取出时间显示如下
 
@@ -21,9 +23,72 @@ toc: show
 datetime.datetime(2016, 5, 11, 6, 49, 18, tzinfo=<UTC>)
 ```
 
-3.
+3.推荐使用django自带模块[django.utils.timezone](https://docs.djangoproject.com/es/1.9/ref/utils/#module-django.utils.timezone)进行时间处理
 
+比较好的应用实例，在建表时遇到取当前时间默认值时，之前有如下写法——
 
+```django
+from django.utils.datetime_safe import datetime
+class X(models.Model):
+	models.DateTimeField(null=False, default=datetime.utcnow)
+```
+
+而现在可以用
+
+```django
+from django.utils import timezone
+class X(models.Model):
+	models.DateTimeField(null=False, default=timezone.now)
+```
+
+特别注意设置`USE_TZ = True`之后，`timezone.now()`得到的datetime格式时间是aware的并且是UTC时间。以上两种方式都可以使用。
+
+同样获得日期的话也可以用同样的方法。另外先举个例子说明为什么`default=datetime.utcnow`这里后面不加括号
+
+反例：
+
+```django
+today = models.DateField(null=False, default=date.today())
+```
+
+在django1.8中这条在migrations里面生成的信息变成了
+
+```django
+('today', models.DateField(default=datetime.date(2016, 5, 31)))
+```
+
+也就是哪天建表，这个默认日期就是哪天了，而不是写表的日期。
+
+关于这点的解释有人在stack-overflow上面[说过](http://stackoverflow.com/a/2771701/5256607)——
+
+> By passing datetime.now without the parentheses, you are passing the actual function, which will be called each time a record is added. If you pass it datetime.now(), then you are just evaluating the function and passing it the return value.
+
+同样可以用timezone里面的方法
+
+```django
+today = models.DateField(null=False, default=timezone.now)
+```
+
+这里有点疑问，如果在django里面定义一个方法如下
+
+```django
+def time_now():
+    a = datetime.datetime.now()
+    print(a)
+    b = datetime.datetime.today()
+    print(b)
+    c = timezone.now()
+    print(c)
+```
+
+其执行结果是
+```python
+2016-05-31 17:30:37.130926
+2016-05-31 17:30:37.131008
+2016-05-31 09:30:37.131042+00:00
+```
+
+然而调用datetime.datetime.now存入数据库的却是utc时间
 
 ### 实例
 

@@ -489,7 +489,7 @@ code {
 /* css for strong tag start */
 strong {
     font-size: 120%;
-    color: #00eefe;
+    /* color: #00eefe; */
 }
 
 strong-title {
@@ -535,5 +535,10 @@ hr {
     border-top: 1px solid rgba(255,255,255,.25);
 }
 
+blockquote {
+    color: #ddd;
+    font-family: Cabin,"Times New Roman",Times,serif;
+    border-left: 10px solid rgba(255,255,255,.60);
+}
 
 /* Added in Magician Yang's blog */
