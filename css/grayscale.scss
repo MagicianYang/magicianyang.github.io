@@ -503,6 +503,8 @@ strong-title {
 }
 .clickable-header:hover {
   text-decoration:underline;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .top-level-header {
   display:inline;

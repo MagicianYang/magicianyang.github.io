@@ -173,28 +173,6 @@ UTC是什么的缩写？戳[维基UTC](https://zh.wikipedia.org/wiki/%E5%8D%8F%E
 
 
 
-### 其他Python时间处理问题实例
-
-#### 返回当前毫秒级别时间戳
-
-```python
->>> import time
->>> current_milli_time = lambda: int(round(time.time()*1000))
->>> current_milli_time()
-1464338590155
-```
-
-#### 时间戳转换成字符串
-
-```python
->>> import datetime
->>> print(datetime.datetime.fromtimestamp(1464338590.155).strftime('%Y-%m-%d %H:%M:%S'))
-2016-05-27 16:43:10
-```
-
-值得注意的是，`.fromtimestamp()`这个方法在本地执行的时候，会把填入的时间戳转换为本地时间，如果需要确定的获得utc的时间，则直接使用`.utcfromtimestamp()`
-
-
 
 
 
