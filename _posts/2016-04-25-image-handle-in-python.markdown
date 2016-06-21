@@ -23,6 +23,21 @@ with open('/path/of/your/image/image_name','rb') as f:
 
 以上两种方式对本地图片操作或许没什么意义（主要指方法二），不过对云端取出的图片来说一般都使用第二种，因为图片的比特流可能直接传入等等。
 
+对于python 3.4，`imghdr`不能识别出google的新型图片格式`webp`，解决方式参考[这里](http://stackoverflow.com/questions/28085271/how-to-identify-webp-image-type-with-python)
+
+```python
+try:
+    imghdr.test_webp
+except AttributeError:
+    # add in webp test, see http://bugs.python.org/issue20197
+    def test_webp(h, f):
+        if h.startswith(b'RIFF') and h[8:12] == b'WEBP':
+            return 'webp'
+
+    imghdr.tests.append(test_webp)
+```
+
+加上此段代码之后就可以正常识别.webp文件格式
 
 _environment:Python3.4, Pillow_
 
@@ -58,3 +73,5 @@ def get_image_size(self):
         except (OSError, IOError) as e:
             return 0, 0, file_size
 ```
+
+
