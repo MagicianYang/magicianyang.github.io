@@ -39,3 +39,5 @@ OSError: cannot identify image file <_io.BytesIO object at 0x7fb113ed0ac8>
 > Pillow has been tested with version 0.1.3, which does not read transparent WebP files. Versions 0.3.0 and above support transparency.
 
 安装流程参考以前的[博客文章](https://magicianyang.github.io/tech/2016/03/22/django-simple-captcha.html)应该没有问题
+
+并可以参考[webp官方文档](https://developers.google.com/speed/webp/docs/compiling#building)
