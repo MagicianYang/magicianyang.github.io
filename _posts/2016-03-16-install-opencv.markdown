@@ -259,6 +259,17 @@ CMake Error at 3rdparty/ippicv/downloader.cmake:77 (message):
 $ wget  https://raw.githubusercontent.com/Itseez/opencv_3rdparty/81a676001ca8075ada498583e4166079e5744668/ippicv/ippicv_linux_20151201.tgz
 ```
 
+但是下完之后又发现报错
+
+```
+CMake Warning at 3rdparty/ippicv/downloader.cmake:56 (message):
+  ICV: Local copy of ICV package has invalid MD5 hash:
+  d9b734c6f53500d00398aadfbf5e04c8 (expected:
+  808b791a6eac9ed78d32a7666804320e)
+```
+
+诡异的hash校验不正确的问题，后来找了个可靠的下载地址解决了问题，参见[博客](http://www.cnblogs.com/nwpuxuezha/p/5312886.html)
+
 然后我们继续……
 
 ```
