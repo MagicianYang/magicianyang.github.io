@@ -121,7 +121,7 @@ $ tar zxvf cmake-3.5.0-Linux-i386.tar.gz
 创建链接
 
 ```
-$ ln -s /usr/local/cmake-2.8.9-Linux-i386/bin/* /usr/bin/
+$ ln -s /usr/local/cmake-3.5.0-Linux-i386/bin/* /usr/bin/
 ```
 
 此时安装完成可以查看版本
@@ -130,6 +130,20 @@ $ ln -s /usr/local/cmake-2.8.9-Linux-i386/bin/* /usr/bin/
 $ cmake --version
 $ cmake version 3.5.0
 ```
+
+这里有一点需要注意，如果是ubuntu12.04系统，这里可能还是找不到cmake，虽然明明建立symbolic link了，却还是显示报错
+
+```shell
+bash: /usr/bin/cmake: No such file or directory
+```
+
+于是最后在网上找到一个类似[提问](http://askubuntu.com/q/193670)，解决方案是需要安装`ia32-libs`，安装见[这里](http://stackoverflow.com/a/23381781/5256607)，不过一般直接在命令行输入
+
+```shell
+sudo apt-get install ia32-libs
+```
+
+安装之后就能正常使用cmake了
 
 ### 4.HDF5安装
 
@@ -149,14 +163,14 @@ fatal error: hdf5.h: no such file or directory
 去[HDF5官网](https://www.hdfgroup.org/HDF5/)下一份或者用命令行随便下个老版本
 
 ```
-$ wget http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.16.tar
+$ wget http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.17.tar.gz
 ```
 
 之后解压编译安装
 
 ```
-$ tar -xzf hdf5-1.8.16.tar.gz
-$ cd hdf5-1.8.16
+$ tar -zxvf hdf5-1.8.17.tar.gz
+$ cd hdf5-1.8.17
 $ mkdir build
 $ cd build
 $ cmake ..
@@ -230,6 +244,22 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
 	-D BUILD_EXAMPLES=ON ..
 ```
+
+此步骤在别的机器上面安装的时候遇到一个问题（目测是网不太好导致的），就是安装不上一个第三方插件
+
+```
+CMake Error at 3rdparty/ippicv/downloader.cmake:77 (message):
+  ICV: Failed to download ICV package: ippicv_linux_20151201.tgz.
+  Status=28;"Timeout was reached"
+```
+
+呵呵，解决方法就是手动下载，参考[这份教程](http://www.linuxfromscratch.org/blfs/view/svn/general/opencv.html)里面有个下载地址
+
+```
+$ wget  https://raw.githubusercontent.com/Itseez/opencv_3rdparty/81a676001ca8075ada498583e4166079e5744668/ippicv/ippicv_linux_20151201.tgz
+```
+
+然后我们继续……
 
 ```
 $ make -j4
