@@ -6,6 +6,9 @@ category: tech
 tags: [ 'python','opencv' ]
 toc: show
 ---
+_(updated at 2016.08.09)_
+
+
 ## OpenCV的安装
 
 为了实践[用Python和OpenCV创建一个图片搜索引擎的完整指南](http://python.jobbole.com/80860/)，
@@ -13,6 +16,7 @@ toc: show
 需要安装OpenCV，以下是安装流程以及报错解决。
 
 安装环境是基于Ubuntu 14.04LTS和Python3.4，进行OpenCV 3.1.0的安装
+(由于第二次安装是在Ubuntu 12.04的测试机上面，遇到更多坑，所以会增补一些可能遇到的问题)
 
 具体安装参考文章[Install OpenCV 3.0 and Python 3.4+ on Ubuntu](http://www.pyimagesearch.com/2015/07/20/install-opencv-3-0-and-python-3-4-on-ubuntu/)来进行比较靠谱，OpenCV官网的安装指南缺失东西太多，比较坑爹，尤其是不要去网上找旧版本的安装指南
 
@@ -131,7 +135,7 @@ $ cmake --version
 $ cmake version 3.5.0
 ```
 
-这里有一点需要注意，如果是ubuntu12.04系统，这里可能还是找不到cmake，虽然明明建立symbolic link了，却还是显示报错
+这里有一点需要注意，**如果是ubuntu12.04系统**，这里可能还是找不到cmake，虽然明明建立symbolic link了，却还是显示报错
 
 ```shell
 bash: /usr/bin/cmake: No such file or directory
@@ -185,7 +189,7 @@ $ sudo make install
 #### 先从github下载最新的文件
 
 目前是3.1.0版本的。**注意一个非常坑爹的问题，就是这个opencv源码和下面那个opencv_contrib源码都要直接在～这个目录下拖，不要随便在别的目录下拖。
-否则编译的时候会出现找不到一些文件的状况**，这里绝对不能随意发挥
+否则编译的时候会出现找不到一些文件的状况**，这里绝对不能随意发挥（其实应该是在cmake的时候可以指定路径，不过为了省去麻烦就……）
 
 opencv
 
@@ -215,7 +219,8 @@ ImportError: No module named cv2
 ```
 
 也就是说这个OpenCV装了跟没装一样……
-出现这个问题的原因是因为没有cv2.cpython-34m.so这个文件，有人问过这个问题[Why cv2.so missing after opencv installed?](http://stackoverflow.com/questions/15790501/why-cv2-so-missing-after-opencv-installed)，可惜下面的答案都不能解决实际问题。
+
+出现这个问题的原因是因为**没有cv2.cpython-34m.so这个文件**，有人问过这个问题[Why cv2.so missing after opencv installed?](http://stackoverflow.com/questions/15790501/why-cv2-so-missing-after-opencv-installed)，可惜下面的答案都不能解决实际问题。
 
 我在cmake之后报告上面发现一个问题
 
@@ -231,9 +236,51 @@ ImportError: No module named cv2
 
 **打开opencv文件夹找到文件`CMakeLists.txt`，在前面加上一行`set(Python_ADDITIONAL_VERSIONS 3.4)`**
 
-这时候我们回到正常步骤
+当时安装14.04系统的时候做到这步之后就能正常出现保姆级教程里面那张图那样，可以找到python3相关的lib和numpy的路径了，但是在装测试机的时候死活找不到
+
+此时在网上搜索发现大家会手动在cmake中加入参数协助查找路径，见这里的[安装问题排查](http://qa.helplib.com/804955)
+
+也就是说正常步骤进行cmake需要加一行，具体如下，可以与下面的指令进行对比，其中python library的路径最好确认一下，不过大致是这个位置
+
+```shell
+$ cd ~/opencv
+$ mkdir build
+$ cd build
+$ cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D PYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.4m.so \
+    -D PYTHON_INCLUDE_DIR=/usr/include/python3.4m -DPYTHON_INCLUDE_DIR2=/usr/include/x86_64-linux-gnu/python3.4m \
+    -D INSTALL_C_EXAMPLES=OFF \
+    -D INSTALL_PYTHON_EXAMPLES=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+    -D BUILD_EXAMPLES=ON ..
+```
+
+然而，标准结局，还是不行……最后仔细研究了一下报错
+
+```python
+-- Could NOT find PythonLibs: Found unsuitable version "3.4.5", but required is exact version "3.4.4" (found /usr/lib/x86_64-linux-gnu/libpython3.4m.so)
+```
+
+发现症结就在于，测试机的系统环境python3.4是3.4.5的版本号，而由于工程里面的虚拟环境创建稍早，python是3.4.4的，这样都不行！！！网上有个人也出了类似[问题](http://stackoverflow.com/questions/33082371/install-opencv3-0-with-python-3-4-3-under-virtual-environment-pyenv)。可以用下面两种方式检查当前python版本
 
 ```
+$ python --version
+$ /usr/bin/python3.4 -V
+```
+
+而第一次安装的机器上面就没有这个问题，两个位置的python都是3.4.3所以一次性通过了。
+
+于是解决方法就只能是重新开个新的虚拟环境，其实在网上有人问过这种[问题](http://stackoverflow.com/questions/10218946/upgrade-python-in-a-virtualenv)但是没觉得回答的人有什么好的解决方法，所以就重装吧……
+
+```shell
+$ virtualenv --no-site-packages -p python3.4 /path/to/environment/.env345
+$ pip install -r requirements.txt
+```
+
+这时候我们回到正常步骤（原14.04安装时的cmake操作），请务必记住此时的编译是要在开着虚拟环境的情况编译的，这样我们才能去绑定虚拟环境里面的python3
+
+```shell
 $ cd ~/opencv
 $ mkdir build
 $ cd build
@@ -245,7 +292,7 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D BUILD_EXAMPLES=ON ..
 ```
 
-此步骤在别的机器上面安装的时候遇到一个问题（目测是网不太好导致的），就是安装不上一个第三方插件
+此步骤在测试机上面安装的时候遇到一个别的问题（目测是网不太好导致的），就是安装不上一个第三方插件
 
 ```
 CMake Error at 3rdparty/ippicv/downloader.cmake:77 (message):
@@ -268,13 +315,76 @@ CMake Warning at 3rdparty/ippicv/downloader.cmake:56 (message):
   808b791a6eac9ed78d32a7666804320e)
 ```
 
-诡异的hash校验不正确的问题，后来找了个可靠的下载地址解决了问题，参见[博客](http://www.cnblogs.com/nwpuxuezha/p/5312886.html)
+诡异的hash校验不正确的问题，后来找了个可靠的下载地址解决了问题，参见[博客](http://www.cnblogs.com/nwpuxuezha/p/5312886.html)，提前下完之后把文件`ippicv_linux_20151201.tgz`丢到这个文件路径里面去`~/opencv/3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e`
 
-然后我们继续……
+这样cmake中间可能出现的错误大部分都排查了
+
+编译成功之后，我们继续……
 
 ```
 $ make -j4
 ```
+
+这里在14.04系统没再遇上错误，但是12.04系统时，一开始是一到这个位置就停
+
+![pic-189](/img/blog-pic/2016-03-16/Selection_189.jpg)
+
+在一个[opencv安装教程](http://embedonix.com/articles/image-processing/installing-opencv-3-1-0-on-ubuntu/)里面找到了Common Problems
+
+里面有个需要注意的地方——
+
+> Old version of GCC! Please make sure you have a recent version of GCC (I recommend 4.8.X or higher)
+
+这个安装教程下面评论里面有人放一些报错跟我遇到的类似，博主的建议就是检查gcc/g++版本
+
+于是查看了一下测试机的版本`gcc -v`，发现版本是4.6，而当初在14.04系统直接装的就是4.8。所以需要手动重装gcc和g++
+
+参见[安装指导](http://askubuntu.com/a/271561)或者[这个代码](https://gist.github.com/omnus/6404505)，**针对Ubuntu 12.04安装**
+
+```shell
+$ sudo apt-get install python-software-properties
+$ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+$ sudo apt-get update
+$ sudo apt-get install gcc-4.8
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
+
+$ sudo apt-get install g++-4.8
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
+```
+
+安装完了之后回头重新去cmake才行，不过默认还是使用gcc而不是gcc-8.4所以需要做个链接
+
+```shell
+$ sudo rm /usr/bin/g++
+$ sudo ln -s /usr/bin/g++-4.XXX /usr/bin/g++
+```
+
+不过也可以选择不覆盖之前的gcc，参见[这里](http://stackoverflow.com/a/17275650/5256607)
+
+```shell
+$ export CC=/usr/local/bin/gcc
+$ export CXX=/usr/local/bin/g++
+```
+
+重新操作又遇到别的报错了，报错大致如下
+
+```
+/home/www-data/opencv/modules/imgcodecs/src/grfmt_webp.cpp: In member function ‘virtual bool cv::WebPEncoder::write(const cv::Mat&, const std::vector<int>&)’:
+/home/www-data/opencv/modules/imgcodecs/src/grfmt_webp.cpp:258:93: error: ‘WebPEncodeLosslessBGR’ was not declared in this scope
+             size = WebPEncodeLosslessBGR(image->ptr(), width, height, (int)image->step, &out);
+                                                                                             ^
+/home/www-data/opencv/modules/imgcodecs/src/grfmt_webp.cpp:262:94: error: ‘WebPEncodeLosslessBGRA’ was not declared in this scope
+             size = WebPEncodeLosslessBGRA(image->ptr(), width, height, (int)image->step, &out);
+                                                                                              ^
+make[2]: *** [modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_webp.cpp.o] Error 1
+make[1]: *** [modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+```
+
+这个问题是libwebp-dev没有安装的原因，请去参考[官方文档](https://developers.google.com/speed/webp/docs/compiling#building)安装一下
+
+之后……
+
 
 ```
 $ sudo make install
