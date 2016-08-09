@@ -405,6 +405,8 @@ $ ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so cv2.so
 拓展阅读
 [在linux环境下编译运行OpenCV程序的两种方法](http://www.cnblogs.com/woshijpf/p/3840530.html)
 
+这里也有个安装问题集锦[OpenCV Installation Troubleshooting Guide](http://www.ozbotz.org/opencv-install-troubleshooting/)
+
 ## OpenCV的实践
 
 ### 代码调试
