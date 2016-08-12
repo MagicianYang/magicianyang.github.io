@@ -64,11 +64,10 @@ Python 3.4.3 (default, Oct 14 2015, 20:28:29)
 [GCC 4.8.4] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 (InteractiveConsole)
+>>> import PIL
+>>> PIL.PILLOW_VERSION
+'3.3.0'
 >>> from PIL import Image
->>> import _imaging
-Traceback (most recent call last):
-  File "<console>", line 1, in <module>
-ImportError: No module named '_imaging'
 >>> from PIL import _imaging
 >>> Image.init()
 1
