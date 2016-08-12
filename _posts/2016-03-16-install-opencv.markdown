@@ -518,6 +518,51 @@ $ python search.py --index index.csv --query queries/108100.png --result-path da
 
 其中`--index`后跟已生成的`.csv`文件路径，`--query`后跟测试图片路径，`--result-path`后跟相册图片路径，用来最后展示时使用
 
+### 实践应用
+
+#### OpenCV读取文件
+
+上面文章中读取本地路径的文件使用以下代码
+
+```python
+image = cv2.imread(imagePath)
+```
+
+但是直接由文件来读的话不用这种方式，参见作者另一篇博客[Convert URL to image with Python and OpenCV](http://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/)
+
+```python
+resp = urllib.request.urlopen(url)
+np_image = np.asarray(bytearray(resp.read()), dtype="uint8")
+image = cv2.imdecode(np_image, cv2.IMREAD_UNCHANGED)****
+```
+
+resp为文件就可以，如果从云端数据库获得也是同理，这里就不用`cv2.imread`而是用`cv2.imdecode`
+
+需要注意的是，**OpenCV不能读gif文件**，如果输入gif文件虽然不会报错但是得到的image就会是个空值，这样再放入
+
+```python
+ColorDescriptor((8, 12, 3)).describe(image)
+```
+
+这里就会出现如下报错
+
+```python
+OpenCV Error: Assertion failed ((scn == 3 || scn == 4) && (depth == CV_8U || depth == CV_32F)) in ipp_cvtColor, file /home/www-data/opencv/modules/imgproc/src/color.cpp, line 7646
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/alidata1/com.bugua/web/bg_search/services/similar_img/test.py", line 25, in img_test
+    q_features = f.color_features(image)
+  File "/alidata1/com.bugua/web/bg_search/services/similar_img/feature.py", line 31, in color_features
+    features = self.cd.describe(image_file)
+  File "/alidata1/com.bugua/web/bg_search/services/similar_img/descriptor.py", line 24, in describe
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+cv2.error: /home/www-data/opencv/modules/imgproc/src/color.cpp:7646: error: (-215) (scn == 3 || scn == 4) && (depth == CV_8U || depth == CV_32F) in function ipp_cvtColor
+```
+
+
+
+
+
 
 
 
