@@ -236,6 +236,8 @@ ImportError: No module named cv2
 
 **打开opencv文件夹找到文件`CMakeLists.txt`，在前面加上一行`set(Python_ADDITIONAL_VERSIONS 3.4)`**
 
+此处也可以不修改文件，参考[这个安装指导](https://scivision.co/anaconda-python-opencv3/)的cmake指令
+
 当时安装14.04系统的时候做到这步之后就能正常出现保姆级教程里面那张图那样，可以找到python3相关的lib和numpy的路径了，但是在装测试机的时候死活找不到
 
 此时在网上搜索发现大家会手动在cmake中加入参数协助查找路径，见这里的[安装问题排查](http://qa.helplib.com/804955)
