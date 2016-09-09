@@ -438,6 +438,8 @@ cv2.ellipse(img, box, color[, thickness[, lineType]]) → None
 (axesX, axesY) = (int(w * 0.75) // 2, int(h * 0.75) // 2)
 ```
 
+OpenCV 3.0 官方文档[椭圆绘制](http://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html#cv2.ellipse)和针对python的[椭圆绘制示例](http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_drawing_functions/py_drawing_functions.html#drawing-circle)
+
 
 #### cv2.normalize
 
