@@ -31,6 +31,8 @@ _此博客基于之前博文“[OPENCV的安装与实践](https://magicianyang.g
 
 #### KD Tree
 
+关于KD树的讲解可以看[这篇博客](http://blog.csdn.net/v_july_v/article/details/8203674)
+
 KD Tree的python代码实现可以直接套用scipy包里面scipy.spatial.KDTree
 
 戳[文档](http://docs.scipy.org/doc/scipy-0.18.0/reference/generated/scipy.spatial.KDTree.html#scipy-spatial-kdtree)，目前最新版为0.18.0，戳[源代码](https://github.com/scipy/scipy/blob/v0.18.0/scipy/spatial/kdtree.py#L176)
@@ -40,7 +42,7 @@ KD Tree的python代码实现可以直接套用scipy包里面scipy.spatial.KDTree
 不过这个KD Tree实现之后想要存储进某个地方是有问题的，直接Pickle不可以。出现了报错如下
 
 ```python
-_pickle.PicklingError: Can't pickle <class
+_pickle.PicklingError: Can't pickle <class XXX>
 ```
 
 关于这个问题的通用解答戳[这个问题](http://stackoverflow.com/questions/4677012/python-cant-pickle-type-x-attribute-lookup-failed)，针对KD Tree存储的解决则戳[这个问题](http://stackoverflow.com/questions/5773216/saving-kdtree-object-in-python)
@@ -66,6 +68,14 @@ _pickle.PicklingError: Can't pickle <class
 （在看Machine Learning in Action里面hadoop实践那章节的时候发现的）
 
 然后在[这篇博客](http://www.pyimagesearch.com/2014/09/15/python-compare-two-images/)里面发现也提及这个名词，感觉算是走对路子。
+
+[RPForest](http://developers.lyst.com/2015/07/10/ann/)
+
+[ANN](http://scikit-learn.org/stable/modules/neighbors.html#approximate-nearest-neighbors)
+
+[LSHForest](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LSHForest.html#sklearn.neighbors.LSHForest)
+
+[Annoy](https://github.com/spotify/annoy) (Approximate Nearest Neighbors Oh Yeah)
 
 
 
