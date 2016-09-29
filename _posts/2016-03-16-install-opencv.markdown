@@ -50,6 +50,8 @@ $ sudo apt-get install libgtk2.0-dev
 $ sudo apt-get install libatlas-base-dev gfortran
 ```
 
+注意对于debian7系统，gfortran安装会找不到合适依赖，没找到解决办法，只能换用debian8，这里直接安装就可以了
+
 ### 2.搭建虚拟环境和安装Python3.4
 
 #### 没搭建过虚拟环境的话需要预先安装
@@ -167,7 +169,7 @@ fatal error: hdf5.h: no such file or directory
 去[HDF5官网](https://www.hdfgroup.org/HDF5/)下一份或者用命令行随便下个老版本
 
 ```
-$ wget http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.17.tar.gz
+$ wget https://support.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.17.tar.gz
 ```
 
 之后解压编译安装
@@ -537,7 +539,7 @@ image = cv2.imread(imagePath)
 ```python
 resp = urllib.request.urlopen(url)
 np_image = np.asarray(bytearray(resp.read()), dtype="uint8")
-image = cv2.imdecode(np_image, cv2.IMREAD_UNCHANGED)****
+image = cv2.imdecode(np_image, cv2.IMREAD_UNCHANGED)
 ```
 
 resp为文件就可以，如果从云端数据库获得也是同理，这里就不用`cv2.imread`而是用`cv2.imdecode`
@@ -562,6 +564,9 @@ Traceback (most recent call last):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 cv2.error: /home/www-data/opencv/modules/imgproc/src/color.cpp:7646: error: (-215) (scn == 3 || scn == 4) && (depth == CV_8U || depth == CV_32F) in function ipp_cvtColor
 ```
+
+使用`imghdr.what`可以检查gif格式，之后采用了分帧转png来解决问题，参考[gifextract.py](https://gist.github.com/BigglesZX/4016539)
+
 
 
 
