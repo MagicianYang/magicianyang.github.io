@@ -3,7 +3,7 @@ layout: post
 section-type: post
 title: ip地址获取或转换
 category: tech
-tags: [ 'ubuntu' ]
+tags: [ 'django', 'python' ]
 toc: show
 ---
 
@@ -41,7 +41,7 @@ int -> str
 ```
 def ip_int2str(num: int) -> str:
     """
-    inverse operation get_ip
+    更为清晰的转换
     """
     ip4 = num & 255
     num = num >> 8
