@@ -33,8 +33,58 @@ print list(reversed(a))
 关于with的理解[戳](https://sdqali.in/blog/2012/07/09/understanding-pythons-with-statement/)
 或者[戳](https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/)
 
+
 #### tip3 python与C语言不同
 
 1.不用{}而严格缩进
+
 2.单引号和双引号不区分使用
-3.使用`X if C else Y`来代替`C?X:Y`
+
+3.使用`X if C else Y`来替代`C?X:Y`
+
+4.使用`if...elif...else`来替代`switch...case`
+
+...
+
+#### tip6 函数编写
+
+1.短小，嵌套层次不要过深，三层内为宜
+
+2.参数设计简明，个数不宜过多
+
+3.参数向下兼容，新版本增加参数时使用默认参数
+
+4.一个函数只做一件事，保证函数语句粒度一致性
+
+#### tip7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
