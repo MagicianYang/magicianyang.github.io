@@ -26,9 +26,15 @@ with open(path, 'r') as f:
 a='abcdefg'
 print a[::-1]
 print list(reversed(a))
+#理解标准库，使用内置函数，如字符串格式化str.format()
+'{greet} from {language}'.format(greet='hello',language='python')
 ```
 
 关于with的理解[戳](https://sdqali.in/blog/2012/07/09/understanding-pythons-with-statement/)
 或者[戳](https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/)
 
+#### tip3 python与C语言不同
 
+1.不用{}而严格缩进
+2.单引号和双引号不区分使用
+3.使用`X if C else Y`来代替`C?X:Y`
