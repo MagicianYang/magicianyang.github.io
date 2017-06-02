@@ -80,7 +80,12 @@ class Color(Enum):
 
 2.生成器，用yield延迟计算
 
+### tip12 类型检查尽量不使用type
 
+```python
+type(n) is types.IntType
+isinstance(n,int)
+```
 
 
 
