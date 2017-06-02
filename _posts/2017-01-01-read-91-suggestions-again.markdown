@@ -14,7 +14,7 @@ toc: show
 python的特色
 
 ```python
-# 变量交换
+# 变量交换，tip9也提及
 a, b = b, a
 # 遍历容器
 for i in alist:
@@ -62,7 +62,7 @@ print list(reversed(a))
 
 ### tip7 常量集中到一个文件
 
-注，实际应用中一般有const.py，其中最多的就是[枚举类型](https://docs.python.org/3/library/enum.html)
+注，实际应用中一般有const.py，其中最多的就是[枚举类型](https://docs.python.org/3/library/enum.html)，这个正好是python3.4新增的特性，tip11也提到这个，不再赘述
 
 ```python
 from enum import Enum
@@ -72,7 +72,13 @@ class Color(Enum):
 	BLUE = 3
 ```
 
+### tip10 充分利用lazy evaluation特性
 
+惰性计算
+
+1.考虑if条件判断的顺序，避免不必要的计算
+
+2.生成器，用yield延迟计算
 
 
 
