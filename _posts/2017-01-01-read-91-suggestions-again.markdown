@@ -7,13 +7,13 @@ tags: [ 'python' ]
 toc: show
 ---
 
-此为重读《编写高质量代码 改善python程序的91个建议》的部分总结，持续更新反思中……
+此为重读《编写高质量代码 改善python程序的91个建议》的部分总结和结合自身经验的，持续更新反思中……
 
 ### tip1 Pythonic概念
 
 python的特色
 
-```
+```python
 # 变量交换
 a, b = b, a
 # 遍历容器
@@ -62,15 +62,16 @@ print list(reversed(a))
 
 ### tip7 常量集中到一个文件
 
-有const.py，其中最多的就是[枚举类型](https://docs.python.org/3/library/enum.html)
+注，实际应用中一般有const.py，其中最多的就是[枚举类型](https://docs.python.org/3/library/enum.html)
 
-```
+```python
 from enum import Enum
 class Color(Enum):
 	RED = 1
 	GREEN = 2
 	BLUE = 3
 ```
+
 
 
 
