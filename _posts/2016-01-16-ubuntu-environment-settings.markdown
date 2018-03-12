@@ -33,9 +33,15 @@ $ [sudo] pip install virtualenv
 
 #### Usage
 ```
-$ virtualenv .env
+$ virtualenv --python=python3 .env
 ```
+
+python version here is necessary, after you activate the env,try `which python`
 
 ```
 $ source .env/bin/activate
+$ deactivate
 ```
+
+
+
